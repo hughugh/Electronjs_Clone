@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Electron</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="icon" href=""> <!-- 구현하기 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="style.css"> 
+<script src="Electron-js.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="site-header-logo no-underline-hover" href="/"> <!-- 얘네는 밑줄 놓으면 안되니까 클래스 2개 -->
+                <svg class="site-header-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="">
+                    <g stroke="none" fill="none" fill-rule="evenodd">
+                      <path class="svg-stroke" d="M11.7014354,7.72646259 C7.91761319,7.04380371 4.81334929,7.69369948 3.61536899,9.74908711 C2.72656361,11.27402 3.03878853,13.3122813 4.27551338,15.4489979 M6.32642733,18.1886712 C7.89193828,19.8928217 9.9666792,21.548102 12.4120986,22.9466461 C18.2414315,26.2804624 24.2930499,27.0779063 27.1669222,25.1368228 M29.8456419,24.0565148 C29.8456419,23.1971812 29.1423799,22.5005537 28.2748621,22.5005537 C27.4073444,22.5005537 26.7040823,23.1971812 26.7040823,24.0565148 C26.7040823,24.9158484 27.4073444,25.612476 28.2748621,25.612476 C29.1423799,25.612476 29.8456419,24.9158484 29.8456419,24.0565148 L29.8456419,24.0565148 Z"></path>
+                      <path class="svg-stroke" d="M26.1017264,17.699802 C28.5790274,14.8008665 29.5563892,11.8210699 28.3609038,9.7699627 C27.4866535,8.27000212 25.5971843,7.51855661 23.1692624,7.48727915 M19.6970573,7.86083838 C17.4054295,8.34719767 14.8948834,9.30454988 12.424266,10.7175048 C6.42288792,14.1497143 2.65401611,19.1281832 3.16552768,22.580522 M3.68501877,25.612476 C4.5525365,25.612476 5.25579857,24.9158484 5.25579857,24.0565148 C5.25579857,23.1971812 4.5525365,22.5005537 3.68501877,22.5005537 C2.81750104,22.5005537 2.11423897,23.1971812 2.11423897,24.0565148 C2.11423897,24.9158484 2.81750104,25.612476 3.68501877,25.612476 L3.68501877,25.612476 L3.68501877,25.612476 Z"></path>
+                      <path class="svg-stroke" d="M10.1856596,25.0699995 C11.480995,28.6529192 13.5999849,30.9876144 15.99422,30.9876144 C17.7292778,30.9876144 19.3197869,29.7615184 20.5570359,27.7228112 M22.0509221,24.3364015 C22.7373456,22.1635452 23.1341282,19.5948285 23.1341282,16.8425133 C23.1341282,10.0879866 20.7444131,4.43922457 17.5485944,3.03357113 M15.99422,4.25337326 C16.8617378,4.25337326 17.5649998,3.55674574 17.5649998,2.69741214 C17.5649998,1.83807854 16.8617378,1.14145101 15.99422,1.14145101 C15.1267023,1.14145101 14.4234402,1.83807854 14.4234402,2.69741214 C14.4234402,3.55674574 15.1267023,4.25337326 15.99422,4.25337326 Z"></path>
+                      <path class="svg-fill" d="M16.2975137,18.2334955 C15.5219407,18.3994908 14.7578457,17.9112502 14.5899415,17.142994 C14.4226932,16.3747378 14.9152558,15.6178512 15.6908287,15.451531 C16.4664016,15.2855357 17.2304967,15.7737763 17.3984009,16.5420325 C17.5659771,17.3102887 17.0730866,18.0671753 16.2975137,18.2334955 Z"></path>
+                    </g>
+                  </svg>
+                  <svg class="vertical-middle" width="156px" height="18px" viewBox="0 0 156 18" xmlns="http://www.w3.org/2000/svg">
+                    <title>Electron</title>
+                    <path stroke="none" fill="currentColor" fill-rule="evenodd" d="M0.93602403,17.0884387 L11.4962951,17.0884387 C11.9763075,17.0884387 12.3603173,16.7044288 12.3603173,16.2244165 C12.3603173,15.7444042 11.9763075,15.3603943 11.4962951,15.3603943 L1.89604868,15.3603943 L1.89604868,9.48024338 L10.2962643,9.48024338 C10.7762767,9.48024338 11.1602865,9.09623352 11.1602865,8.6162212 C11.1602865,8.16020949 10.7762767,7.75219902 10.2962643,7.75219902 L1.89604868,7.75219902 L1.89604868,2.01605176 L11.3762921,2.01605176 C11.8563044,2.01605176 12.2403142,1.6320419 12.2403142,1.15202958 C12.2403142,0.672017252 11.8563044,0.288007394 11.3762921,0.288007394 L0.93602403,0.288007394 C0.432011091,0.288007394 
+                    0,0.720018485 0,1.24803204 L0,16.1284141 C0,16.6564276 0.432011091,17.0884387 0.93602403,17.0884387 L0.93602403,17.0884387 Z M19.0804898,16.1284141 C19.0804898,16.6564276 19.5125009,17.0884387 20.0165139,17.0884387 L29.6887622,17.0884387 C30.1687745,17.0884387 30.5527844,16.7044288 30.5527844,16.2244165 C30.5527844,15.7444042 30.1687745,15.3363937 29.6887622,15.3363937 L20.9765385,15.3363937 L20.9765385,1.12802896 C20.9765385,0.600015404 20.5445274,0.168004313 20.0165139,0.168004313 C19.5125009,0.168004313 19.0804898,0.600015404 19.0804898,1.12802896 L19.0804898,16.1284141 Z M37.8729723,17.0884387 L48.4332434,17.0884387 C48.9132557,17.0884387 49.2972656,16.7044288 49.2972656,16.2244165 
+                    C49.2972656,15.7444042 48.9132557,15.3603943 48.4332434,15.3603943 L38.8329969,15.3603943 L38.8329969,9.48024338 L47.2332126,9.48024338 C47.7132249,9.48024338 48.0972348,9.09623352 48.0972348,8.6162212 C48.0972348,8.16020949 47.7132249,7.75219902 47.2332126,7.75219902 L38.8329969,7.75219902 L38.8329969,2.01605176 L48.3132403,2.01605176 C48.7932526,2.01605176 49.1772625,1.6320419 49.1772625,1.15202958 C49.1772625,0.672017252 48.7932526,0.288007394 48.3132403,0.288007394 L37.8729723,0.288007394 C37.3689593,0.288007394 36.9369483,0.720018485 36.9369483,1.24803204 L36.9369483,16.1284141 C36.9369483,16.6564276 37.3689593,17.0884387 37.8729723,17.0884387 L37.8729723,17.0884387 Z M63.6976353,17.3764461 
+                    C66.4577061,17.3764461 68.2817529,16.4164214 69.9377955,14.9043826 C70.1057998,14.7603789 70.2498035,14.5203728 70.2498035,14.2323654 C70.2498035,13.7523531 69.8177924,13.320342 69.3377801,13.320342 C69.0977739,13.320342 68.8817684,13.440345 68.7377647,13.5843487 C67.2977277,14.9043826 65.8336901,15.6244011 63.7456365,15.6244011 C60.0495416,15.6244011 57.2414695,12.5763229 57.2414695,8.68822305 L57.2414695,8.64022181 C57.2414695,4.77612261 60.025541,1.75204498 63.7456365,1.75204498 C65.8096895,1.75204498 67.2737271,2.5200647 68.5697603,3.67209427 C68.713764,3.76809674 68.9297696,3.88809982 69.1937764,3.88809982 C69.6977893,3.88809982 70.153801,3.45608873 70.153801,2.95207579 C70.153801,2.61606716 
+                    69.9617961,2.35206038 69.7697911,2.18405607 C68.2097511,0.888022798 66.4817067,0 63.7696371,0 C58.8255102,0 55.273419,3.93610105 55.273419,8.68822305 L55.273419,8.73622428 C55.273419,13.5603481 58.8495108,17.3764461 63.6976353,17.3764461 L63.6976353,17.3764461 Z M81.1700838,16.2484171 C81.1700838,16.7764307 81.6020949,17.2084418 82.1301085,17.2084418 C82.658122,17.2084418 83.0901331,16.7764307 83.0901331,16.2484171 L83.0901331,2.04005237 L87.9622582,2.04005237 C88.4422705,2.04005237 88.850281,1.65604251 88.850281,1.17603019 C88.850281,0.696017868 88.4422705,0.288007394 87.9622582,0.288007394 L76.2979587,0.288007394 C75.8179464,0.288007394 75.4099359,0.696017868 75.4099359,1.17603019 C75.4099359,1.65604251 
+                    75.8179464,2.04005237 76.2979587,2.04005237 L81.1700838,2.04005237 L81.1700838,16.2484171 Z M95.2824461,16.2484171 C95.2824461,16.7764307 95.7144572,17.2084418 96.2184701,17.2084418 C96.7464837,17.2084418 97.1784948,16.7764307 97.1784948,16.2484171 L97.1784948,10.5602711 L102.002619,10.5602711 L106.73074,16.7044288 C106.946746,16.9924362 107.234753,17.2084418 107.618763,17.2084418 C108.098775,17.2084418 108.578787,16.7764307 108.578787,16.2724177 C108.578787,16.008411 108.458784,15.7924054 108.266779,15.5763999 L104.090672,10.2002619 C106.706739,9.69624892 108.578787,8.08820764 108.578787,5.32813679 L108.578787,5.28013555 C108.578787,3.96010166 108.098775,2.78407147 107.282754,1.96805052 C106.226727,0.912023414 
+                    104.570685,0.288007394 102.506632,0.288007394 L96.2184701,0.288007394 C95.7144572,0.288007394 95.2824461,0.720018485 95.2824461,1.24803204 L95.2824461,16.2484171 Z M97.1784948,8.85622736 L97.1784948,2.04005237 L102.362628,2.04005237 C105.074698,2.04005237 106.658738,3.28808441 106.658738,5.3521374 L106.658738,5.40013863 C106.658738,7.56019409 104.858692,8.85622736 102.338627,8.85622736 L97.1784948,8.85622736 Z M123.435169,17.3764461 C128.5473,17.3764461 132.027389,13.320342 132.027389,8.68822305 L132.027389,8.64022181 C132.027389,4.0081029 128.595301,0 123.48317,0 C118.371039,0 114.89095,4.05610413 114.89095,8.68822305 L114.89095,8.73622428 C114.89095,13.3683432 118.323038,17.3764461 123.435169,17.3764461 
+                    L123.435169,17.3764461 Z M123.48317,15.6244011 C119.643072,15.6244011 116.859,12.504321 116.859,8.68822305 L116.859,8.64022181 C116.859,4.82412385 119.59507,1.75204498 123.435169,1.75204498 C127.275267,1.75204498 130.059339,4.87212508 130.059339,8.68822305 L130.059339,8.73622428 C130.059339,12.5523222 127.323269,15.6244011 123.48317,15.6244011 L123.48317,15.6244011 Z M139.035569,16.2724177 C139.035569,16.7764307 139.44358,17.2084418 139.947593,17.2084418 C140.475606,17.2084418 140.883617,16.7764307 140.883617,16.2724177 L140.883617,3.2640838 L151.299884,16.5844258 C151.587892,16.9204344 151.875899,17.1604405 152.283909,17.1604405 L152.379912,17.1604405 C152.883925,17.1604405 153.243934,16.7764307 153.243934,16.2724177 
+                    L153.243934,1.10402834 C153.243934,0.600015404 152.835924,0.168004313 152.331911,0.168004313 C151.803897,0.168004313 151.395887,0.600015404 151.395887,1.10402834 L151.395887,13.7763537 L141.195625,0.768019717 C140.931618,0.432011091 140.667611,0.216005545 140.2356,0.216005545 L139.971593,0.216005545 C139.46758,0.216005545 139.035569,0.648016636 139.035569,1.15202958 L139.035569,16.2724177 Z"></path>
+                  </svg>
+            </a>
+            <nav class="site-header-nav">
+                <a class="site-header-nav-item" href="/donors">후원자</a>
+                <a class="site-header-nav-item" href="/apps">앱</a>
+                <a class="site-header-nav-item" href="/docs">문서</a>
+                <a class="site-header-nav-item" href="/blog">블로그</a>
+                <a class="site-header-nav-item" href="/community">커뮤니티</a>
+                <a class="site-header-nav-item" href="/governance">Governance</a>
+                <a class="site-header-nav-item" data-href-match="/releases" href="/releases/stable">출시</a>
+                <div class="search-box">
+                    <input class="search-input" placeholder="검색" type="text">
+                </div>
+                <a class="github" href="https://github.com/electron" title="Github Organization">
+                    <span class="fa fa-github" style="font-size:38px;"></span>
+                </a>
+                <a class="site-header-nav-item korean" href="javascript:LanguageClicked()">한국어</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <article id="language">
+            <div class="language-container">
+                <div class="language-title">언어를 선택하세요</div>
+                <a class="language-obj" href="./">English</a>
+                <a class="language-obj" href="./">日本語 (Japanese)</a>
+                <a class="language-obj" href="./">Español (Spanish)</a>
+                <a class="language-obj" href="./">中文 (Chinese Simplified)</a>
+                <a class="language-obj" href="./">Türkçe (Turkish)</a>
+                <a class="language-obj" href="./">Indonesian</a>
+                <a class="language-obj" href="./">Filipino</a>
+                <a class="language-obj" href="./">Français (French)</a>
+                <a class="language-obj" href="./">Русский (Russian)</a>
+                <a class="language-obj" href="./">한국어 (Korean) </a>
+                <a class="language-obj" href="./">Italiano (Italian)</a>
+                <a class="language-obj" href="./">Português (Portuguese)</a>
+                <a class="language-obj" href="./">Deutsch (German)</a>
+                <a class="language-obj" href="./">Українська (Ukrainian)</a>
+                <a class="language-obj" href="./">中文 (Chinese Traditional)</a>
+                <a class="language-obj" href="./">język polski (Polish)</a>
+                <a class="language-obj" href="./">български език (Bulgarian)</a>
+                <a class="language-obj" href="./">हिन्दी (Hindi)</a>
+                <a class="language-obj" href="./">Nederlands (Dutch)</a>
+                <a class="language-obj" href="./">Tiếng Việt (Vietnamese)</a>
+                <a class="language-obj" href="./">اللغة العربية (Arabic)</a>
+                <a class="language-obj" href="./">ไทย (Thai)</a>
+                <a class="language-obj" href="./">فارسی (Persian)</a>
+                <a class="language-obj" href="./">עברית (Hebrew)</a>
+                <a class="language-obj" href="./">čeština (Czech)</a>
+                <a class="language-obj" href="./">limba română (Romanian)</a>
+                <a class="language-obj" href="./">Wikang Tagalog (Tagalog)</a>
+                <hr class="language-hr">
+                <div class="language-detail-container">
+                    <a class="language-detail" href="./">더욱 많은 언어에 대한 세부사항 확인하기</a>
+                </div>
+            </div>
+        </article>
+        <article class="main-picture">
+            <img class="main-picture-image" src="icon\main1.PNG">
+            <p class="main-picture-script">
+                JavaScript, HTML, CSS를 이용하여 크로스 플랫폼 데스크탑 앱을 만들어보세요
+            </p>
+        </article>
+        <article class="white launch">
+            <div class="launch-main">
+                <h1 class="launch-name"><a class="launch-name" href="electronjs.org/releases/stable">출시</a></h1>
+                <div class="codes-container">
+<div id="codes-first" class="codes-default" onmouseover="codeHover(this)" onmouseout="codeHoverOut(this)"><figure class="code">
+<pre class="version"><code><span class="bright">  $ npm i -D electron@lastest</span><span class="dark">
+  # Electron   5.0.0
+  # Node       12.0.0
+  # Chromium   73.0.3683.119</span></code></pre>
+</figure></div>
+<div id="codes-second" class="codes-default" onmouseover="codeHover(this)" onmouseout="codeHoverOut(this)"><figure class="code">
+<pre class="version"><code><span class="bright">  $ npm i -D electron@beta</span><span class="dark">
+  # Electron   6.0.0-beta.1
+  # Node       12.0.0
+  # Chromium   76.0.3774.1</span></code>
+</pre></figure></div>
+<div id="codes-third" class="codes-default" onmouseover="codeHover(this)" onmouseout="codeHoverOut(this)"><figure class="code">
+<pre class="version"><code><span class="bright">  $ npm i -D electron-nightly</span><span class="dark">
+  # Electron   6.0.0-nightly.20190311
+  # Node       12.0.0
+  # Chromium   76.0.3724-8
+</span></code></pre>
+</figure>
+</div>
+</div>
+            </div>
+        </article>
+        <article class="explain-all">
+            <div class="white explain">
+                <div class="explain-container">
+                    <h1 class="easy">Electron은 여러분이 생각한 것보다 쉽습니다.</h1>
+                    <p class="easy-why">
+                    만약 당신이 웹 사이트를 구축할 수 있다면, 데스크톱 앱도 만드실 수 있습니다. Electron은 네이티브 애플리케이션이며 자바스크립트, HTML,
+                    CSS로 이루어진 프레임워크입니다. Electron은 어려운 부분을 처리하므로 당신은 애플리케이션의 핵심 부분에 집중할 수 있습니다.
+                    </p>
+                    <p class="easy-button">
+                    <a class="youtube-button" type="button" href="https://www.youtube.com/watch?v=8YP_nOCO-4Q&feature=youtu.be">
+                        <img class="y-button" src=icon\button.PNG width="20px" height="20px">
+                        동영상 보기
+                    </a>
+                    </p>
+                    <hr class="explain-hr">
+                </div>
+            </div>
+            <div class="content-container">
+                <div class="contents">
+                    <img src="svg\svg5.svg" width="85%" height="85%">
+                    <h3 class="content-h3">웹 기술</h3>
+                    <p class="content-p">Electron은 Chromium과 Node.js를 사용하여 여러분이 
+                        HTML, CSS, 그리고 자바스크립트를 이용해 애플리케이션을 만들수 있도록 해줍니다.</p>
+                </div>
+                <div class="contents">
+                    <img src="svg\svg6.svg" width="85%" height="85%">
+                    <h3 class="content-h3">오픈 소스</h3>
+                    <p class="content-p">Electron은 GitHub가 관리하는 오픈소스 프로젝트이며 
+                        적극적인 참여자와 함께하는 커뮤니티입니다.</p>
+                </div>
+                <div class="contents last-content">
+                    <img src="svg\svg7.svg" width="85%" height="85%">
+                    <h3 class="content-h3">크로스 플랫폼</h3>
+                    <p class="content-p">맥, 윈도우, 리눅스와 호환되며, Electron 애플리케이션은 
+                        세 개의 플랫폼에서 빌드되고 동작합니다.</p>
+                </div>
+            </div>
+            <div class="float-back"></div>
+            <div class="explain-last">
+                <h2 class="explain-last-h2">어려운 부분을 쉽게 만들었습니다.</h2>
+            </div>
+            <div class="explain-buttons">
+                <div class="buttons first-button">
+                <a class="no-line" href="electronjs.org/docs/api/auto-updater">
+                    <img class="buttons-img" src="icon\button2.PNG">
+                    <p class="button-p">자동 업데이트</p>
+                </a>
+                </div>
+                <div class="buttons">
+                <a class="no-line" href="electronjs.org/docs/api/menu">
+                    <img class="buttons-img" src="icon\button3.PNG">
+                    <p class="button-p">기본 메뉴 & 알림</p>
+                </a>
+                </div>
+                <div class="buttons">
+                <a class="no-line" href="electronjs.org/docs/api/crash-reporter">
+                    <img class="buttons-img" src="icon\button4.PNG">
+                    <p class="button-p">충돌 보고</p>
+                </a>
+                </div>
+                <div class="buttons">
+                <a class="no-line" href="electronjs.org/docs/api/content-tracing">
+                    <img class="buttons-img" src="icon\button5.PNG">
+                    <p class="button-p">디버깅 및 프로파일링</p>
+                </a>
+                </div>
+                <div class="buttons last-button">
+                <a class="no-line" href="electronjs.org/docs/api/auto-updater#windows">
+                    <img class="buttons-img" src="icon\button6.PNG">
+                    <p class="button-p">윈도우 설치 프로그램</p>
+                </a>
+                </div>
+            </div>
+        </article>
+        <article class="start">
+            <div class="start-x">
+                <section>
+                    <h1 class="start-name">시작하기</h1>
+                    <p class="start-lead">Electron으로 시작하려면 아래에 있는 리소스를 확인하세요. 
+                        어떻게 Electron으로 당신의 웹 앱을 개발하고, 모든 API에 액세스하고, 설치 프로그램을 생성하는지에 대해 알아보세요.
+                    </p>
+                    <div class="start-detail">
+                        <div class="detail-left">
+                            <a href="https://github.com/electron/electron-api-demos/releases">
+                                <img src="icon\start_image.PNG" width="411px" height="284px">
+                            </a>
+                        </div>
+                        <div class="detail-right">
+                            <h3 class="detail-h3">Electron API를 탐색하세요</h3>
+                            <p>
+                                <a href="https://github.com/electron/electron-api-demos">Electron API 데모 앱</a>
+                                은 대화식으로 Electron API의 가장 중요한 부분을 설명합니다. 
+                                샘플 코드와 유용한 팁으로 앱을 제작하는 데에 무엇이 가능할지 알아보세요.
+                            </p>
+                            <a class="download" href="https://github.com/electron/electron-api-demos/releases">
+                                <img class="download" src="icon\button7.PNG" width="16px" height="16px">
+                                <p style="display:inline;">GitHub에서 다운로드</p>
+                            </a>
+                        </div>
+                    </div>
+                    <hr class="start-hr">
+                    <div class="start-try">
+                        <div class="start-try-words">
+                            <h3 class="detail-h3">Try more powerful experiments with Electron Fiddle</h3>
+                            <p>Electron Fiddle lets you create and play with small Electron experiments. 
+                                It greets you with a quick-start template after opening – change a few things, 
+                                choose the version of Electron you want to run it with, and play around. Then, 
+                                save your Fiddle either as a GitHub Gist or to a local folder. Once pushed to GitHub, 
+                                anyone can quickly try your Fiddle out by just entering it in the address bar.</p>
+                            <div class="start-try-buttons">
+                            <a class="download2" href="https://github.com/electron/fiddle/releases/lastest">
+                                <img class="download" src="icon\button7.PNG" width="16px" height="16px">
+                                <p style="display:inline;">GitHub에서 다운로드</p>
+                            </a>
+                            <a class="download2" href="https://github.com/electron/fiddle/" style="width:144px">
+                                <img class="download" src="icon\button8.PNG" width="16px" height="16px">
+                                <p style="display:inline;">See more info</p>
+                            </a>
+                            </div>
+                        </div>
+                        <div class="start-try-right">
+                            <a href="https://github.com/electron/fiddle">
+                            <img class="right1" src="svg\svg8.svg" alt="Electron Fiddle Icon" width=>
+                            <p>
+                                <img class="right2" src="svg\svg9.svg" alt="Electron Fiddle">
+                            </p>
+                            </a>
+                        </div>
+                    </div>
+                    <hr class="start-hr" style="margin-bottom:1.5%;">
+                    <h3 class="quick-h3">
+                        Electron의 실제 동작을 보려면 
+                        <a href="https://github.coom/electron/electron-quick-start" target="_blank">빠른 시작 </a>
+                        앱을 돌려보세요.
+                    </h3>
+                    <p>유용한 표기법이 포함된 아주 작은 Electron앱</p>
+                    <figure class="quick-start-figure">
+                        <pre class="quick-start-figure-pre"><code>
+  <span class="quick-start-dark"># 빠른 시작 저장소 Clone</span>
+  <span class="quick-start-bright">$ git clone https://github.com/electron/electron-quick-start</span>                             
+
+  <span class="quick-start-dark"># 저장소로 이동</span>
+  <span class="quick-start-bright">$ cd electron-quick-start</span>
+
+  <span class="quick-start-dark"># 종속성을 설치하고 실행하세요</span>
+  <span class="quick-start-bright">$ npm install && npm start</span>
+                        </code></pre>
+                    </figure>
+                    <h3 class="quick-start-h3">혹은 <a href="/docs">문서</a>를 더 깊이 읽어보세요.</h3>
+                    <h3 class="quick-start-h3 pt">도움이 필요하세요?</h3>
+                    <p class="quick-start-p"><a href="https://discuss.atom.io/c/electron">토론</a>
+                        포럼이나
+                        <a href="https://atom-slack.herokuapp.com/"> Slack </a>
+                        채널에서 질문하실 수 있습니다. 중요한 알람을 받으시려면 트위터에서
+                        <a href="https://twitter.com/electronjs"> @electronjs </a>
+                        를 팔로우하세요. 개인적으로 연락을 원하시나요?
+                        <a href="mailto:info@electronjs.org"> info@electronjs.org</a>
+                        로 메일을 보내주세요.
+                    </p>
+                </section>
+            </div>
+        </article>
+        <article class="apps">
+            <div class="apps-x">
+                <h1 class="app-name">Electron으로 설계된 애플리케이션</h1>
+                <p class="app-name-detail">
+                    Electron과 함께라면 당신의 아이디어나 회사를 위한 데스크탑 어플리케이션을 쉽게 만들 수 있습니다. 
+                    처음에 GitHub의 <a href="https://atom.io">Atom 에디터</a>를 위해 만들어진 Electron는 Microsoft, Facebook, Slack, Docker와 
+                     같은 회사가 어플리케이션을 만드는데 사용되고 있습니다.
+                </p>
+                <hr class="start-hr">
+                <div class="apps-container">
+                    <a href="/apps/skype" title='Skype' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Skype" src="icon-image\skype.png">
+                            <div class="featured-app-name">Skype</div>
+                        </div>
+                    </a>
+                    <a href="/apps/github-desktop" title='Github Desktop' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="github-desktop" src="icon-image\github.png">
+                            <div class="featured-app-name">GitHub Desktop</div>
+                        </div>
+                    </a>
+                    <a href="/apps/figma" title='figma' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="figma" src="icon-image\figma.png">
+                            <div class="featured-app-name">Figma</div>
+                        </div>
+                    </a>
+                    <a href="/apps/flow" title='flow' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="flow" src="icon-image\flow.png">
+                            <div class="featured-app-name">Flow</div>
+                        </div>
+                    </a>
+                    <a href="/apps/beaker-browser" title='Beaker Browser' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Beaker Browser" src="icon-image\beaker.png">
+                            <div class="featured-app-name">Beaker Browser</div>
+                        </div>
+                    </a>
+                    <a href="/apps/hyper" title='hyper' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="hyper" src="icon-image\hyper.png">
+                            <div class="featured-app-name">Hyper</div>
+                        </div>
+                    </a>
+                    <a href="/apps/kap" title='Kap' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Kap" src="icon-image\kap.png">
+                            <div class="featured-app-name">Kap</div>
+                        </div>
+                    </a>
+                    <a href="/apps/now-desktop" title='now desktop' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="now desktop" src="icon-image\now.png">
+                            <div class="featured-app-name">Now Desktop</div>
+                        </div>
+                    </a>
+                    <a href="/apps/insomnia" title='insomnia' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Insomnia" src="icon-image\insomnia.png">
+                            <div class="featured-app-name">Insomnia</div>
+                        </div>
+                    </a>
+                    <a href="/apps/svgsus" title='svgsus' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Svgsus" src="icon-image\svgsus.png">
+                            <div class="featured-app-name">Svgsus</div>
+                        </div>
+                    </a>
+                    <a href="/apps/simplenote" title='simplenote' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Simplenote" src="icon-image\simplenote.png">
+                            <div class="featured-app-name">Simplenote</div>
+                        </div>
+                    </a>
+                    <a href="/apps/collectie" title='collectie' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Collectie" src="icon-image\collectie.png">
+                            <div class="featured-app-name">Collectie</div>
+                        </div>
+                    </a>
+                    <a href="/apps/gitkraken" title='gitkraken' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Gitkraken" src="icon-image\gitkraken.png">
+                            <div class="featured-app-name">Gitkraken</div>
+                        </div>
+                    </a>
+                    <a href="/apps/ghost" title='Ghost' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Ghost" src="icon-image\ghost.png">
+                            <div class="featured-app-name">Ghost</div>
+                        </div>
+                    </a>
+                    <a href="/apps/webtorrent" title='Webtorrent' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Webtorrent" src="icon-image\webtorrent.png">
+                            <div class="featured-app-name">Webtorrent</div>
+                        </div>
+                    </a>
+                    <a href="/apps/1clipboard" title='1clipboard' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="1clipboard" src="icon-image\1clipboard.png">
+                            <div class="featured-app-name">1Clipboard</div>
+                        </div>
+                    </a>
+                    <a href="/apps/discord" title='Discord' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Discord" src="icon-image\discord.png">
+                            <div class="featured-app-name">Discord</div>
+                        </div>
+                    </a>
+                    <a href="/apps/wordpress" title='Wordpress' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Wordpress" src="icon-image\wordpress.png">
+                            <div class="featured-app-name">WordPress.com</div>
+                        </div>
+                    </a>
+                    <a href="/apps/caret" title='Caret' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Caret" src="icon-image\caret.png">
+                            <div class="featured-app-name">Caret</div>
+                        </div>
+                    </a>
+                    <a href="/apps/jibo" title='JIBO' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="JIBO" src="icon-image\jibo.png">
+                            <div class="featured-app-name">JIBO</div>
+                        </div>
+                    </a>
+                    <a href="/apps/visual-studio-code" title='Visual Studio Code' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Visual Studio Code" src="icon-image\visual-studio-code.png">
+                            <div class="featured-app-name">Visual Studio Code</div>
+                        </div>
+                    </a>
+                    <a href="/apps/kitematic" title='Kitematic' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Kitematic" src="icon-image\kitematic.png">
+                            <div class="featured-app-name">Kitematic</div>
+                        </div>
+                    </a>
+                    <a href="/apps/slack" title='Slack' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Slack" src="icon-image\slack.png">
+                            <div class="featured-app-name">Slack</div>
+                        </div>
+                    </a>
+                    <a href="/apps/atom" title='Atom' class="featured-app">
+                        <div class="featured-app-logo-container">
+                            <img class="featured-app-logo" alt="Atom" src="icon-image\atom.png">
+                            <div class="featured-app-name">Atom</div>
+                        </div>
+                    </a>
+                    
+                </div>
+                <p class="apps-detail">
+                    <a href="/apps">더 많은 애플리케이션 보기</a> 또는 
+                    <a href="https://github.com/electron-apps/master/contributing.md#adding-your-app">의견을 제출하세요</a>.
+                </p>
+            </div>
+        </article>
+    </main>
+    <footer class="foot">
+        <ul class="foot-ul">
+            <li class="foot-li first"><a class="footer-nav-item" href="/">Electron</a></li>
+            <li class="foot-li"><a class="footer-nav-item" href="/">문서</a></li>
+            <li class="foot-li"><a class="footer-nav-item" href="/">블로그</a></li>
+            <li class="foot-li"><a class="footer-nav-item" href="/">커뮤니티</a></li>
+            <li class="foot-li"><a class="footer-nav-item" href="/">앱</a></li>
+            <li class="foot-li"><a class="footer-nav-item" href="/">출시</a></li>
+            <li class="foot-li"><a class="footer-nav-item" href="/">행동 규칙</a></li>
+            <li class="foot-li"><a class="footer-nav-item" href="/">라이선스</a></li>
+            <li class="foot-li"><a class="footer-nav-item" href="/">Security</a></li>
+            <li class="foot-li"><a class="footer-nav-item" href="/">언어</a></li>
+            <li class="foot-li"><a class="footer-nav-item" href="/">연락처</a></li>
+        </ul>
+        <div class="foot-div">
+            <a class="footer-button mdr" href="https://github.com/electron" title="Github Organization"><span class="fa fa-github f" style="font-size:38px;"></span></a>
+            <a class="footer-button" href="https://twitter.com/electronjs" title="@electronjs on Twitter"><span class="fa fa-twitter" style="font-size:38px;"></span></a>
+        </div>
+    </footer>
+    <input type="button" id="control-window-button" class="control-window-open" value="최소화" onclick="control_bar()">
+    <aside class="control">
+        <div class="control-container">
+            <input type="text" id="control-text" size="15">
+            <input type="button" id="control-button" value="변경" onclick="control_perform($('#control-text').val());">
+            <div class="control-info-container">
+                <div class="control-state">
+                    site-header : <span class="B">visible</span><br>
+                    language : <span class="R">hidden</span><br>
+                    main-picture : <span class="B">visible</span><br> 
+                    launch : <span class="B">visible</span><br>
+                    explain-all : <span class="B">visible</span><br>
+                    start : <span class="B">visible</span><br>
+                    apps : <span class="B">visible</span><br>
+                    foot : <span class="B">visible</span><br>
+                </div>
+                <span style="font-weight: bold;">Log</span>
+                <input type="button" id="control-log-button" value="clear" onclick="reset();">
+                <div class="control-log"></div>
+            </div>
+        </div>
+    </aside>
+</body>
+</html>
